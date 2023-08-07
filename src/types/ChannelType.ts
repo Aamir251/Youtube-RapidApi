@@ -10,9 +10,27 @@ type ChannelSnippet = {
     publishedAt? : string,
 }
 
+type ChannelObjectType = {
+    country? : string,
+    description? : string,
+    title : string,
+    unsubscribedTrailer? : string,
+    keywords? : string
+}
+
+type StatisticsType = {
+    hiddenSubscriberCount? : boolean,
+    subscriberCount : string | number,
+    videoCount : string | number,
+    viewCount? : string | number
+}
 
 export type ChannelBrandingSettingsType = {
-    
+    channel : ChannelObjectType,
+    image : {
+        bannerExternalUrl : string
+    },
+    statistics : StatisticsType,
 }
 
 export type ChannelType = {
