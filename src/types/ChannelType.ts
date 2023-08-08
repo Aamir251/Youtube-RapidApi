@@ -35,11 +35,9 @@ export type ChannelBrandingSettingsType = {
 
 export type ChannelType = {
     [key: string]: any;
-    id: {
-        kind: "youtube#channel" | "youtube#video";
-        videoId?: string;
-        channelId ? : string,
-        [key : string] : any
-    };
+    id : string,
+    kind : string,
+    brandingSettings : ChannelBrandingSettingsType;
     snippet: ChannelSnippet;
+    statistics : StatisticsType
 };

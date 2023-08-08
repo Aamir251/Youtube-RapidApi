@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { VideoType } from '../types/VideoType';
+import { ChannelType } from '../types/ChannelType';
 
 const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
 type APIResponse  = {
     kind : string,
     nextPageToken? : string,
-    items : VideoType[],
+    items : VideoType[] | ChannelType[],
     regionCode? : string,
     [key : string] : any
 }
