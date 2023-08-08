@@ -1,14 +1,15 @@
 import { Card, CardMedia, Stack, Typography } from "@mui/material";
 import { Thumbnails } from "../../types/VideoType";
+import Links from "./LInks";
 
 type PropType = {
     thumbnail : Thumbnails | undefined;
-    title : string | undefined
+    title : string | undefined,
+    channelId : string | undefined
 }
 
 
-const ChannelNav = ({ thumbnail, title } : PropType ) => {
-    console.log("thumnail ", thumbnail);
+const ChannelNav = ({ thumbnail, title, channelId } : PropType ) => {
     
   return (
     <Card sx={{
@@ -16,7 +17,7 @@ const ChannelNav = ({ thumbnail, title } : PropType ) => {
         boxShadow : "none",
         transform : "translateY(-40px)",
     }} >
-        <Stack  pl={10} direction={'row'} alignItems={'center'} gap={6} >
+        <Stack  pl={10} direction={'row'} alignItems={'flex-end'} columnGap={8} >
             <CardMedia
                 image={thumbnail?.default?.url}
                 title={title}
@@ -27,12 +28,17 @@ const ChannelNav = ({ thumbnail, title } : PropType ) => {
                     borderRadius : 100
                 }}
             />
-            <Typography variant="h1" fontSize={40} fontWeight={500} letterSpacing={0.5} >
-                {title}
-            </Typography>
+            <Stack direction={'column'} gap={1} pb={3} >
+                <Typography variant="h1" fontSize={36} fontWeight={500} letterSpacing={0.5} >
+                    {title}
+                </Typography>
+                <Links channelId={channelId} />
+            </Stack>
         </Stack>
+        
     </Card>
   )
 }
 
-export default ChannelNav
+export default ChannelNav;
+

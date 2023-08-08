@@ -34,6 +34,7 @@ const ChannelDetail = () => {
     <ChannelNav
       thumbnail={channelDetails?.snippet?.thumbnails}
       title={channelDetails?.snippet?.title}
+      channelId={channelDetails?.id}
     />
   </Box>
 }
