@@ -15,7 +15,6 @@ const isVideoOrChannel = (kind : string) : boolean => {
 
 
 const Videos = ({ videos } : PropType) => {
-  console.log("videos ", videos);
   
   return (
     <Stack direction={'row'} flexWrap={'wrap'} justifyContent={'start'} gap={3} >

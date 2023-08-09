@@ -7,6 +7,7 @@ import { ChannelType } from "../../types/ChannelType";
 import { useMemo } from "react";
 import ChannelNav from "./ChannelNav";
 import { demoThumbnailUrl } from "../../utils/constants";
+import ChannelVideos from "./ChannelVideos";
 
 
 
@@ -36,6 +37,9 @@ const ChannelDetail = () => {
       title={channelDetails?.snippet?.title}
       channelId={channelDetails?.id}
     />
+    {
+      id && <ChannelVideos channelId={id} />
+    }
   </Box>
 }
 

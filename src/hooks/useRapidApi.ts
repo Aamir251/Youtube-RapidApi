@@ -24,7 +24,8 @@ export type RapidApiParamsType = {
     q? : string,
     part? : string,
     maxResults? : string,
-    id? : string
+    id? : string,
+    channelId? : string
 }
 
 

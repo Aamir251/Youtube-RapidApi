@@ -11,23 +11,23 @@ type LinksPropType = {
 }
 
 const Links = ({ channelId } : LinksPropType ) : JSX.Element => {
-        
     const linksArr : LinkType[] = [
         {
             title : "Home",
             href : `/channel/${channelId}`
         },
-        
         {
             title : "Videos",
             href : `/channel/${channelId}/videos`
         },
-        
+        {
+            title : "Playlist",
+            href : `/channel/${channelId}/playlists`
+        },
         {
             title : "About",
             href : `/channel/${channelId}/about`
-        }
-        
+        },
     ]
 
   
@@ -45,7 +45,6 @@ export default Links;
 const NavLink = ({ title, href } : LinkType) : JSX.Element => {
 
     const { pathname } = useLocation()
-    console.log(pathname);
     
     const isActive = (link : string) : boolean => {
         const endingUrl : string | undefined = pathname.split("/")[3]

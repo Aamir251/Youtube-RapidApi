@@ -1,9 +1,10 @@
-import { Box, Stack, Skeleton } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Videos from '../Videos';
 import { useRapidApi } from '../../hooks/useRapidApi';
 import { useCategoryContext } from '../../Context/CategoryContext';
 import { useMemo, memo } from 'react';
 import FeedVideosLoader from './FeedVideosLoader';
+import { VideoType } from '../../types/VideoType';
 
 type RapidApiParamsType = {
   q : string,
@@ -23,7 +24,7 @@ const Feed = () => {
   },[currentlySelected])
   
   const { loading, data, error } = useRapidApi("search", params);
-  const uiContent = loading ? <FeedVideosLoader /> : error ? <h3>{error}</h3>  : <MemoizedVideos videos={data?.items} />
+  const uiContent = loading ? <FeedVideosLoader /> : error ? <h3>{error}</h3>  : <MemoizedVideos videos={data?.items as VideoType[]} />
   
   return (
     <Stack>

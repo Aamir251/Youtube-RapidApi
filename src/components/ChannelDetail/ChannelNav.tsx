@@ -1,6 +1,6 @@
 import { Card, CardMedia, Stack, Typography } from "@mui/material";
 import { Thumbnails } from "../../types/VideoType";
-import Links from "./LInks";
+import Links from "./Links";
 
 type PropType = {
     thumbnail : Thumbnails | undefined;
@@ -29,7 +29,7 @@ const ChannelNav = ({ thumbnail, title, channelId } : PropType ) => {
                 }}
             />
             <Stack direction={'column'} gap={1} pb={3} >
-                <Typography variant="h1" fontSize={36} fontWeight={500} letterSpacing={0.5} >
+                <Typography variant="h1" fontSize={36} textAlign={'left'} fontWeight={500} letterSpacing={0.5} >
                     {title}
                 </Typography>
                 <Links channelId={channelId} />
