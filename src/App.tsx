@@ -5,7 +5,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
 import { useMemo } from 'react'
 import "./App.css";
-import { CategoryContextProvider } from './Context/CategoryContext'
 import { getDesignTokens } from './theme/getDesignTokens'
 
 const router = createBrowserRouter([

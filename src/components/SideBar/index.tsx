@@ -1,5 +1,4 @@
 import { Box, Stack} from "@mui/material"
-import Copyright from "./Copyright"
 import Logo from "./Logo"
 import Categories from "./Categories"
 

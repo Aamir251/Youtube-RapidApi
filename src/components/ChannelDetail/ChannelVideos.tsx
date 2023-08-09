@@ -1,5 +1,4 @@
 import { RapidApiParamsType, useRapidApi } from "../../hooks/useRapidApi"
-import { Stack, Box } from '@mui/material';
 import Videos from "../Videos";
 import { VideoType } from "../../types/VideoType";
 

@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { useCategoryContext } from "../../Context/CategoryContext";
 import { Category, categories } from "../../utils/constants";
 import { Stack } from "@mui/material";
 import { convertToSlug } from "../../utils/helpers";

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { RapidApiParamsType, useRapidApi } from "../../hooks/useRapidApi";
 import ChannelDetailLoader from "./ChannelDetailLoader";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Banner from "./Banner";
 import { ChannelType } from "../../types/ChannelType";
 import { useMemo } from "react";
@@ -27,6 +27,7 @@ const ChannelDetail = () => {
   }
 
   return <Box>
+    {error && <Typography>{error}</Typography>}
     <Banner
       title={channelDetails?.brandingSettings?.channel?.title} 
       imageUrl={channelDetails?.brandingSettings?.image?.bannerExternalUrl}

@@ -1,7 +1,6 @@
 import { Box, Stack } from '@mui/material';
 import Videos from '../Videos';
 import { useRapidApi } from '../../hooks/useRapidApi';
-import { useCategoryContext } from '../../Context/CategoryContext';
 import { useMemo, memo } from 'react';
 import FeedVideosLoader from './FeedVideosLoader';
 import { VideoType } from '../../types/VideoType';
