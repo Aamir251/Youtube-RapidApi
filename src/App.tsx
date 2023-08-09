@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ChannelDetail, VideoDetail, SearchFeed, Feed } from "./components"
 import Root from './components/Root'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { CssBaseline, ThemeOptions } from '@mui/material'
+import { CssBaseline } from '@mui/material'
 import { useMemo } from 'react'
 import "./App.css";
 import { CategoryContextProvider } from './Context/CategoryContext'
+import { getDesignTokens } from './theme/getDesignTokens'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
         path : "/",
         element : <Feed />
       },
+      {
+        path : "/category/:id",
+        element : <Feed />
+      },
+      
       {
         path : "/video/:id",
         element : <VideoDetail />
@@ -33,26 +39,7 @@ const router = createBrowserRouter([
  
 ])
 
-const getDesignTokens = () : ThemeOptions => ({
-  palette : {
-    background : {
-      default : '#142043',
-    },
-    primary : {
-      main : "#142043",
-      dark : "#142043",
-      
-    },
-    secondary : {
-      main : "#263153"
-    },
-    text : {
-      secondary : "#D6E0FF",
-      primary : "#CDDAEC"
-    }
-   
-  }
-})
+
 
 
 function App() {
@@ -61,9 +48,7 @@ function App() {
   return (
    <ThemeProvider theme={theme} >
     <CssBaseline />
-    <CategoryContextProvider>
       <RouterProvider router={router} />
-    </CategoryContextProvider>
    </ThemeProvider>
   )
 }

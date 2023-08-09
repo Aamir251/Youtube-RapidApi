@@ -6,7 +6,6 @@ import Banner from "./Banner";
 import { ChannelType } from "../../types/ChannelType";
 import { useMemo } from "react";
 import ChannelNav from "./ChannelNav";
-import { demoThumbnailUrl } from "../../utils/constants";
 import ChannelVideos from "./ChannelVideos";
 
 

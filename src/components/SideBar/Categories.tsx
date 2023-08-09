@@ -1,11 +1,18 @@
+import { Link, useParams } from "react-router-dom";
 import { useCategoryContext } from "../../Context/CategoryContext";
 import { Category, categories } from "../../utils/constants";
 import { Stack } from "@mui/material";
+import { convertToSlug } from "../../utils/helpers";
 
 type CategorySelectorType = {
     name : string,
     icon : JSX.Element,
 }
+
+const isActiveLink = (pageSlug : string = 'new', linkSlug : string) => {
+    return pageSlug === linkSlug
+}
+
 const Categories = () => {
 
   return (
@@ -26,11 +33,15 @@ const Categories = () => {
 export default Categories;
 
 const CategorySelector = ({ name, icon } : CategorySelectorType) => {
-    const { currentlySelected, setCurrentlySelected } = useCategoryContext();
-    const isCurrentlySelected = currentlySelected === name;
+    const href = name === 'Home' ? "/" : `/category/${convertToSlug(name)}`
+    const { id : pageSlug } = useParams()
+    
+    const isActive = isActiveLink(pageSlug, convertToSlug(name));
 
-    return <button onClick={() => setCurrentlySelected(name)} className={`category-btn ${isCurrentlySelected && 'is-selected'}`} >
+    return <Link to={href} 
+            className={`category-btn ${isActive && 'is-selected'}`} 
+        >
         <span>{icon}</span>
         <span>{name}</span>
-    </button>
+    </Link>
 }
