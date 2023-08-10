@@ -5,11 +5,18 @@ import { ChannelType } from '../types/ChannelType';
 
 const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
+type Error = {
+    code : number,
+    message : string,
+    [key : string ] : any
+}
+
 type APIResponse  = {
     kind : string,
     nextPageToken? : string,
     items : VideoType[] | ChannelType[],
     regionCode? : string,
+    error? : Error,
     [key : string] : any
 }
 
@@ -25,7 +32,9 @@ export type RapidApiParamsType = {
     part? : string,
     maxResults? : string,
     id? : string,
-    channelId? : string
+    channelId? : string,
+    relatedToVideoId? : string,
+    type? : string
 }
 
 
@@ -51,7 +60,11 @@ export const useRapidApi = (url : string, params : RapidApiParamsType) : UseRapi
         const fetchData = async () => {
             try {
                 setLoading(true)
-                const { data }   = await axios.get<APIResponse>(`${BASE_URL}/${url}`, options);
+                const { data }  = await axios.get<APIResponse>(`${BASE_URL}/${url}`, options);
+
+                if(data?.error) {
+                    throw new Error(data?.error?.message)
+                }
                 setData(data)
                 setLoading(false)
                 
@@ -59,8 +72,9 @@ export const useRapidApi = (url : string, params : RapidApiParamsType) : UseRapi
                 if(axios.isAxiosError(error)) {
                     console.error("Error in Fetching ",error?.response?.data?.message);
                     
-                    setError(error?.response?.data)
+                    setError(error?.response?.data?.message)
                 }
+                console.error("Error is ", error)
                 setLoading(false)
             }
         }

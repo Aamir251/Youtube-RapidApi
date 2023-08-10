@@ -14,7 +14,6 @@ const ChannelVideos = ({ channelId } : PropType) => {
         maxResults : '30'
     }
     const { loading, data, error } = useRapidApi('search', params)
-    console.log("loading ",data?.items);
     
     if(loading) {
         return <h2>Loading Videos</h2>

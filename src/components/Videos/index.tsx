@@ -9,6 +9,8 @@ type PropType = {
 
 // type VideoOrChannelType = "youtube#channel" | "youtube#video"
 
+// this function checks if the item received is a video or channel or not;
+
 const isVideoOrChannel = (kind : string) : boolean => {
   return ["youtube#channel", "youtube#video"].includes(kind)
 }
@@ -22,9 +24,9 @@ const Videos = ({ videos } : PropType) => {
       {/* because it can send us a channel link too */}
       {
         videos?.map(item => {
-           return  isVideoOrChannel(item?.id?.kind) && <Box>
-            {item?.id?.videoId && <VideoCard key={item.id.videoId} videoDetail={item} />}
-            {item?.id?.channelId && <ChannelCard key={item?.id?.channelId} channelDetail={item} />}
+           return  isVideoOrChannel(item?.id?.kind) && <Box key={item.id.videoId || item?.id?.channelId} >
+            {item?.id?.videoId && <VideoCard videoDetail={item} />}
+            {item?.id?.channelId && <ChannelCard channelDetail={item} />}
           </Box>}
         )
       }

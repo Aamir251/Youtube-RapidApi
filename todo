@@ -1,2 +1,3 @@
-1. Change the Sidebar to Category Links Instead of Clickable Selectors
+1. Implement Proper Error handling (Currently not fetching related videos)
 2. Implement the Video Detail / Playback packages
+3. Implement the Search Functionality
