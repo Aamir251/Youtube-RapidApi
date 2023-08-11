@@ -1,8 +1,8 @@
 import { RapidApiParamsType, useRapidApi } from "../../hooks/useRapidApi"
-import { Stack, Typography } from "@mui/material";
-import Videos from "../Videos";
+import { Box, Stack, Typography } from "@mui/material";
+import { VideoCard } from "..";
 import { VideoType } from "../../types/VideoType";
-
+import { useMemo } from 'react';
 
 
 type PropType = {
@@ -19,14 +19,27 @@ const RelatedVideos = ({ relatedToVideoId } : PropType ) => {
     }
 
     const { loading, data, error } = useRapidApi("search", params);
-    console.log("Data ", error)
+
+    const relatedVideos : VideoType[] = useMemo(() => data?.items as VideoType[] ,[data]);
+
+
     if(loading) {
-        return <Typography variant="h3" >Loading Similar Videos....</Typography>
+        return <Typography variant="h5" >Loading Similar Videos....</Typography>
     }
     return (
-        <Stack direction={'row'} gap={10}>
+        <Stack
+            direction={'column'}
+            gap={1}
+            maxHeight={'90vh'}
+            overflow={'scroll'} 
+        >
             { error && <Typography variant="body1" > {error} </Typography> }
-           {data?.items.length && <Videos videos={data?.items as VideoType[] } />}
+           {relatedVideos.length && relatedVideos.map((item) => {
+           return item?.id &&  <Box key={item.id?.videoId} >
+            <VideoCard videoDetail={item as VideoType} />
+          </Box>}
+        )
+      }
         </Stack>
     )
 }

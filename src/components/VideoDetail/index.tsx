@@ -2,9 +2,10 @@ import { memo, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { RapidApiParamsType, useRapidApi } from "../../hooks/useRapidApi";
 import { Box, Stack, Typography } from "@mui/material";
-import ReactPlayer from "react-player";
 import RelatedVideos from "./RelatedVideos";
-
+import ReactPlayer from "react-player"
+import VideoOverview from "./VideoOverview";
+import { VideoType } from "../../types/VideoType";
 const VideoDetail = () => {
 
   const { id } = useParams();
@@ -18,21 +19,24 @@ const VideoDetail = () => {
 
   const { loading, data, error } = useRapidApi('videos', params)
 
-  console.log("Video detail is", data?.items)
+  const video : VideoType = data?.items[0] as VideoType;
 
-  if(!id) return null
+  if(!id || !video) return null
   if(loading) {
     return <h2>Loading ...</h2>
   }
-
+  console.log("DATA ", data?.items)  
   return (
     <Box>
       {error && <Typography variant="body2" fontSize={16} >{error}</Typography>}
-      <Stack direction={'column'} >
-        <Box sx={{
-          width : "100%"
-        }} >
-          <ReactPlayer style={{ width : '100%' }} url={`https://www.youtube.com/watch?v=${id}`}  />
+      <Stack direction={'row'} gap={4} mt={4} >
+        <Box width={'100%'} maxWidth={550}>
+          <ReactPlayer width={'100%'} url={`https://youtube.com/watch?v=${id}`} />
+
+          { video.statistics && <VideoOverview
+              title={video?.snippet?.title}
+              statistics={video?.statistics}  
+            /> }
         </Box>
         <MemoizedRelatedVideos relatedToVideoId={id}  />
       </Stack>

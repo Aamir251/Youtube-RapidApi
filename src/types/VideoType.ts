@@ -28,6 +28,12 @@ export type Snippet = {
     publishTime: string;
 };
 
+export type Statistics = {
+  commentCount : string,
+  likeCount : string,
+  viewCount : string
+}
+
 export type VideoType = {
     [key: string]: any;
     id: {
@@ -37,4 +43,5 @@ export type VideoType = {
         [key : string] : any
     };
     snippet: Snippet;
+    statistics? : Statistics
 };

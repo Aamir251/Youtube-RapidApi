@@ -1,18 +1,13 @@
 import { Link } from "react-router-dom";
 import { VideoType } from "../../types/VideoType"
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { shrinkText } from "../../utils/helpers";
 
 type VideoCardProp = {
     videoDetail : VideoType
 }
 
-const shrinkText = (text : string) : string => {
 
-    const arr : string[] = text.split(" ");
-    const newArr : string[] = arr.slice(0,9);
-    
-    return newArr.join(" ").concat("...")
-}
 
 const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardProp ) => {
 
