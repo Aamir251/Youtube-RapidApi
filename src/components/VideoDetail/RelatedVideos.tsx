@@ -22,7 +22,6 @@ const RelatedVideos = ({ relatedToVideoId } : PropType ) => {
 
     const relatedVideos : VideoType[] = useMemo(() => data?.items as VideoType[] ,[data]);
 
-    console.log(relatedVideos)
     if(loading) {
         return <Typography variant="h5" >Loading Similar Videos....</Typography>
     }

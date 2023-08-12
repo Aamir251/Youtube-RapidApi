@@ -6,7 +6,8 @@ import RelatedVideos from "./RelatedVideos";
 import ReactPlayer from "react-player"
 import VideoOverview from "./VideoOverview";
 import { VideoType } from "../../types/VideoType";
-import ChannelName from "./Channel";
+import ChannelName from "./ChannelOverview";
+import ChannelOverview from "./ChannelOverview";
 
 
 const VideoDetail = () => {
@@ -24,25 +25,34 @@ const VideoDetail = () => {
 
   const video : VideoType = data?.items[0] as VideoType;
 
-  if(!id || !video) return null
+  if(!id || !video) return null;
+
   if(loading) {
     return <h2>Loading ...</h2>
-  }
-  console.log("DATA ", data?.items)
+  };
+
   return (
     <Box>
       {error && <Typography variant="body2" fontSize={16} >{error}</Typography>}
       <Stack direction={'row'} gap={4} mt={4} >
         <Box width={'100%'} maxWidth={550}>
-          <ReactPlayer style={{ borderRadius : 10, overflow : "hidden" }} width={'100%'} url={`https://youtube.com/watch?v=${id}`} />
-          {/* The Channel Details */}
-          
+          <ReactPlayer
+            style={{ 
+              borderRadius : 10, 
+              overflow : "hidden" 
+            }}
+            width={'100%'}
+            url={`https://youtube.com/watch?v=${id}`}
+          />
           
           { video.statistics && <VideoOverview
               title={video?.snippet?.title}
               statistics={video?.statistics} 
               channelTitle={video?.snippet?.channelTitle}
             /> }
+
+          { video?.snippet?.channelId && <ChannelOverview channelId={video?.snippet?.channelId}  /> }
+
           
         </Box>
         <MemoizedRelatedVideos relatedToVideoId={id}  />

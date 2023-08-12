@@ -8,6 +8,8 @@ type ChannelSnippet = {
     thumbnails? : Thumbnails,
     title? : string,
     publishedAt? : string,
+    channelTitle ? : string,
+    channelId? : string
 }
 
 type ChannelObjectType = {

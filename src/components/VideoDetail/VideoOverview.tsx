@@ -1,7 +1,7 @@
 import { Stack, Typography, Box } from '@mui/material';
 import { Statistics } from "../../types/VideoType";
 import { addComasToNum, shrinkText } from '../../utils/helpers';
-import ChannelName from './Channel';
+import ChannelName from './ChannelOverview';
 
 
 type PropType = {
@@ -49,13 +49,7 @@ const VideoOverview = ({ statistics, title, channelTitle } : PropType) => {
           </Typography>
         </Box>
       </Stack>
-      <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} >
-        <ChannelName
-          channelName={channelTitle}
-        />
-        
-
-      </Stack>
+      
 
 
     </Stack>
