@@ -22,26 +22,29 @@ const RelatedVideos = ({ relatedToVideoId } : PropType ) => {
 
     const relatedVideos : VideoType[] = useMemo(() => data?.items as VideoType[] ,[data]);
 
-
+    console.log(relatedVideos)
     if(loading) {
         return <Typography variant="h5" >Loading Similar Videos....</Typography>
     }
-    return (
-        <Stack
-            direction={'column'}
-            gap={1}
-            maxHeight={'90vh'}
-            overflow={'scroll'} 
-        >
-            { error && <Typography variant="body1" > {error} </Typography> }
-           {relatedVideos.length && relatedVideos.map((item) => {
-           return item?.id &&  <Box key={item.id?.videoId} >
-            <VideoCard videoDetail={item as VideoType} />
-          </Box>}
+    if(relatedVideos?.length) {
+        return (
+            <Stack
+                direction={'column'}
+                gap={1}
+                maxHeight={'90vh'}
+                overflow={'scroll'}
+                className="related-videos"
+            >
+                { error && <Typography variant="body1" > {error} </Typography> }
+                {relatedVideos.length && relatedVideos.map((item) => {
+                return item?.id &&  <Box key={item.id?.videoId} >
+                <VideoCard videoDetail={item as VideoType} />
+                </Box>}
+            )
+            }
+            </Stack>
         )
-      }
-        </Stack>
-    )
+    }
 }
 
 export default RelatedVideos
