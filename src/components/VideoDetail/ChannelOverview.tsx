@@ -1,8 +1,9 @@
-import { Card, CardMedia, Typography, CardContent } from '@mui/material';
+import { Card, CardMedia, Typography, CardContent, Box, Stack } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { RapidApiParamsType, useRapidApi } from '../../hooks/useRapidApi';
 import { useMemo } from 'react';
 import { ChannelType } from '../../types/ChannelType';
+import { addComasToNum, addLetterToNum } from '../../utils/helpers';
 
 type PropType = {
     channelId : string;
@@ -30,9 +31,12 @@ const ChannelOverview = ({ channelId } : PropType ) => {
 
   const channelInfo = data?.items[0] as ChannelType;
   console.log(" channelInfo ", channelInfo)
-  // const { snippet: { thumbnails, channelTitle } } = video;
+
+  const { statistics : { subscriberCount }, snippet : { thumbnails }, brandingSettings : { channel : { title } }  } = channelInfo;
+
   return (
     <Card
+        className='asdgasdgasd'
         sx={{ 
             backgroundColor : "transparent",
             boxShadow : "none",
@@ -40,12 +44,31 @@ const ChannelOverview = ({ channelId } : PropType ) => {
             flexDirection : "row",
             columnGap : 1,
             alignItems : "center",
-            mt : 1
+            mt : 1.5
         }}>
-        <Typography textAlign={'left'} fontSize={13} fontWeight={500} >
-            {/* {channelName} */}
-        </Typography>
-        <CheckCircleIcon sx={{ width : 15 }} color="secondary" />
+
+          <CardContent sx={{ padding : 0, display : "flex", alignItems : "center", gap : 1 }} >
+            <CardMedia
+              image={thumbnails?.medium?.url}
+              sx={{ 
+                width : 40,
+                height : 40,
+                borderRadius : 2,
+                objectFit : "cover"
+              }} 
+            />
+            <Stack direction={'column'} >
+              <Box sx={{ display : "flex", alignItems : "center", gap : 1 }} >
+                <Typography textAlign={'left'} fontSize={13} fontWeight={500} >
+                  {title}
+                </Typography>
+                <CheckCircleIcon sx={{ width : 15 }} color="secondary" />
+              </Box>
+              <Typography textAlign={'left'} fontSize={10} fontWeight={500} color={'gray'} >
+              {addLetterToNum(Number(subscriberCount))} Subscribers
+              </Typography>
+            </Stack>
+          </CardContent>
     </Card>
   )
 }

@@ -12,3 +12,19 @@ export const shrinkText = (text : string, wordLimit : number = 9) : string => {
 export const addComasToNum = (num : number) : string => {
     return new Intl.NumberFormat('en-US',{ maximumSignificantDigits : 3 }).format(num)
 }
+
+// add letters like M, K at the end of the number
+export const addLetterToNum = (num : number) : string => {
+    if (num >= 1000000000) {
+        const billion = num / 1000000000;
+        return billion.toFixed(1) + "B";
+    } else if (num >= 1000000) {
+        const crores = num / 1000000;
+        return crores.toFixed(2) + "M";
+    } else if (num >= 1000) {
+        const lakhs = num / 1000;
+        return lakhs.toFixed(1) + "K";
+    } else {
+        return num.toString(); // Return the number as is if it's less than 1 lakh
+    }
+}

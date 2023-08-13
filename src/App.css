@@ -6,6 +6,7 @@
 }
 
 .category-btn {
+  text-decoration: none;
   display: flex;
   width: 100%;
   background-color: transparent;

@@ -1,16 +1,14 @@
 import { Stack, Typography, Box } from '@mui/material';
 import { Statistics } from "../../types/VideoType";
-import { addComasToNum, shrinkText } from '../../utils/helpers';
-import ChannelName from './ChannelOverview';
-
+import { addLetterToNum, shrinkText } from '../../utils/helpers';
+import { Favorite, Equalizer } from "@mui/icons-material"
 
 type PropType = {
   title : string;
   statistics : Statistics;
-  channelTitle : string
 }
 
-const VideoOverview = ({ statistics, title, channelTitle } : PropType) => {
+const VideoOverview = ({ statistics, title } : PropType) => {
   const { viewCount, likeCount } = statistics;
   return (
     <Stack mt={1.5}  >
@@ -26,28 +24,33 @@ const VideoOverview = ({ statistics, title, channelTitle } : PropType) => {
             {shrinkText(title, 12)}
           </Typography>
         </Box>
-        <Box  display={'flex'} flexDirection={'row'} columnGap={2} >
-          <Typography
-              variant='h6'
-              fontSize={12}
-              textAlign={'left'}
-              color={'#484F76'}
-              mt={0.8}
-              width={'max-content'}
-            >
-              {addComasToNum(Number(viewCount))} Views
-          </Typography>
-          <Typography
-              variant='h6'
-              fontSize={12}
-              textAlign={'left'}
-              color={'#484F76'}
-              mt={0.8}
-              width={'max-content'}
-            >
-              {addComasToNum(Number(likeCount))} likes
-          </Typography>
-        </Box>
+        <Stack direction={'row'} gap={3}>
+              <Stack direction={'row'} alignItems={'center'} gap={0.5}>
+                <Equalizer sx={{ width : 15 }}  />
+                <Typography
+                  variant='h6'
+                  fontSize={12}
+                  textAlign={'left'}
+                  color={'#484F76'}
+                  width={'max-content'}
+                  pt={0.3}
+                >
+                  {addLetterToNum(Number(viewCount))}
+                </Typography>
+              </Stack>
+              <Stack direction={'row'} alignItems={'center'} gap={0.5} >
+                <Favorite sx={{ width : 15 }} />
+                <Typography
+                    variant='h6'
+                    fontSize={12}
+                    textAlign={'left'}
+                    color={'#484F76'}
+                    width={'max-content'}
+                  >
+                    {addLetterToNum(Number(likeCount))}
+                </Typography>
+              </Stack>
+        </Stack>
       </Stack>
       
 

@@ -48,12 +48,9 @@ const VideoDetail = () => {
           { video.statistics && <VideoOverview
               title={video?.snippet?.title}
               statistics={video?.statistics} 
-              channelTitle={video?.snippet?.channelTitle}
             /> }
 
           { video?.snippet?.channelId && <ChannelOverview channelId={video?.snippet?.channelId}  /> }
-
-          
         </Box>
         <MemoizedRelatedVideos relatedToVideoId={id}  />
       </Stack>
