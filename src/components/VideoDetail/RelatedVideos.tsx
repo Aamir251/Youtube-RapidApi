@@ -25,6 +25,7 @@ const RelatedVideos = ({ relatedToVideoId } : PropType ) => {
     if(loading) {
         return <Typography variant="h5" >Loading Similar Videos....</Typography>
     }
+
     if(relatedVideos?.length) {
         return (
             <Stack

@@ -30,13 +30,11 @@ const ChannelOverview = ({ channelId } : PropType ) => {
   }
 
   const channelInfo = data?.items[0] as ChannelType;
-  console.log(" channelInfo ", channelInfo)
 
   const { statistics : { subscriberCount }, snippet : { thumbnails }, brandingSettings : { channel : { title } }  } = channelInfo;
 
   return (
     <Card
-        className='asdgasdgasd'
         sx={{ 
             backgroundColor : "transparent",
             boxShadow : "none",

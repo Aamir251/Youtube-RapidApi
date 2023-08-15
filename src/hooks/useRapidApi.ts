@@ -42,7 +42,7 @@ export const useRapidApi = (url : string, params : RapidApiParamsType) : UseRapi
 
     const [ data, setData ] = useState<APIResponse | undefined>(undefined);
     const [ loading, setLoading ] = useState<boolean>(true);
-    const [ error, setError ] = useState<string>('');
+    const [ error, setError ] = useState<Error>({ message : "", code : 400});
     
     
     useEffect(() => {
@@ -72,10 +72,18 @@ export const useRapidApi = (url : string, params : RapidApiParamsType) : UseRapi
                 if(axios.isAxiosError(error)) {
                     console.error("Error in Fetching ",error?.response?.data?.message);
                     
-                    setError(error?.response?.data?.message)
+                    setError({
+                        message : error?.response?.data?.message,
+                        code : 400
+                    })
                 }
-                console.error("Error is ", error)
                 setLoading(false)
+                console.error("Error is ", error);
+                
+                setError( {
+                    message : "Failed to fetch data " + error,
+                    code : 400
+                })
             }
         }
 
@@ -89,6 +97,6 @@ export const useRapidApi = (url : string, params : RapidApiParamsType) : UseRapi
     return {
         loading,
         data,
-        error
+        error : error.message
     }
 }
