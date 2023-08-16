@@ -3,7 +3,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { RapidApiParamsType, useRapidApi } from '../../hooks/useRapidApi';
 import { useMemo } from 'react';
 import { ChannelType } from '../../types/ChannelType';
-import { addComasToNum, addLetterToNum } from '../../utils/helpers';
+import { addLetterToNum } from '../../utils/helpers';
 
 type PropType = {
     channelId : string;

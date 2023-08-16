@@ -1,5 +1,5 @@
 import { RapidApiParamsType, useRapidApi } from "../../hooks/useRapidApi"
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, CardContent, Stack, Typography, Card } from "@mui/material";
 import { VideoCard } from "..";
 import { VideoType } from "../../types/VideoType";
 import { useMemo } from 'react';
@@ -44,6 +44,36 @@ const RelatedVideos = ({ relatedToVideoId } : PropType ) => {
             }
             </Stack>
         )
+    } else {
+        return <Stack direction={{ xs : "row", lg : "column" }} flexWrap={'wrap'} gap={2} >
+            <Card  sx={{ backgroundColor : "transparent", width : {
+                    sm : 260,
+                    xl : 280
+                } }}>
+                <CardContent sx={{ textAlign : "left" }}>
+                    <Typography>HEllo world</Typography>
+                    <Typography variant="body2" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolor laudantium at ut vel saepe </Typography>
+                </CardContent>
+            </Card>
+            <Card sx={{ backgroundColor : "transparent", width : {
+                    sm : 260,
+                    xl : 280
+                } }}>
+                <CardContent sx={{ textAlign : "left" }}>
+                    <Typography>HEllo world</Typography>
+                    <Typography variant="body2" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolor laudantium at ut vel saepe </Typography>
+                </CardContent>
+            </Card>
+            <Card sx={{ backgroundColor : "transparent", width : {
+                    sm : 260,
+                    xl : 280
+                } }}>
+                <CardContent sx={{ textAlign : "left" }}>
+                    <Typography>HEllo world</Typography>
+                    <Typography variant="body2" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolor laudantium at ut vel saepe </Typography>
+                </CardContent>
+            </Card>
+        </Stack>
     }
 }
 

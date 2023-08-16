@@ -6,7 +6,6 @@ import RelatedVideos from "./RelatedVideos";
 import ReactPlayer from "react-player"
 import VideoOverview from "./VideoOverview";
 import { VideoType } from "../../types/VideoType";
-import ChannelName from "./ChannelOverview";
 import ChannelOverview from "./ChannelOverview";
 
 
@@ -34,13 +33,18 @@ const VideoDetail = () => {
   return (
     <Box>
       {error && <Typography variant="body2" fontSize={16} >{error}</Typography>}
-      <Stack direction={'row'} gap={4} mt={4} >
-        <Box width={'100%'} maxWidth={550}>
+      <Stack direction={{
+        sx : "column",
+        lg : "row"
+      }} gap={4} mt={4} >
+        <Box width={'100%'} maxWidth={{ lg : 550 }}>
           <ReactPlayer
             style={{ 
               borderRadius : 10, 
-              overflow : "hidden" 
+              overflow : "hidden",
+              minWidth : 430
             }}
+            
             width={'100%'}
             url={`https://youtube.com/watch?v=${id}`}
           />

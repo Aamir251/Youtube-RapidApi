@@ -19,12 +19,16 @@ const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardP
         channelId
     } = snippet;
     
-    return <Card sx={{
+    return <Card  sx={{
                 borderRadius : 1.5,
                 backgroundColor : "transparent",
                 boxShadow : "none", position : "relative",
-                width : 280
+                width : {
+                    sm : 260,
+                    xl : 280
+                }
             }}
+
         >
         <Link to={videoId ? `/video/${videoId}` : '/' } style={{ textDecoration : "none" }} >
             <CardMedia

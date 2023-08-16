@@ -43,7 +43,14 @@ type ChannelCardProp = {
 
 const ChannelCard = ({ channelDetail : { id, snippet } } : ChannelCardProp) => {
   
-  return <Card sx={{ boxShadow : "none", width : 280, background  :"transparent" }} >
+  return <Card sx={{ 
+        boxShadow : "none", 
+        width : {
+        sm : 260,
+        xl : 280
+      }, 
+      background  :"transparent" 
+    }} >
     <Link to={`/channel/${id?.channelId}`} style={{ textDecoration : 'none' }} >
       <CardContent >
         <CardMedia 
