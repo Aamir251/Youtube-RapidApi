@@ -23,7 +23,12 @@ const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardP
                 borderRadius : 1.5,
                 backgroundColor : "transparent",
                 boxShadow : "none", position : "relative",
-                width : 280
+                width : {
+                    xs : "100%",
+                    sm : 220,
+                    md : 240,
+                    xl : 280
+                }
             }}
         >
         <Link to={videoId ? `/video/${videoId}` : '/' } style={{ textDecoration : "none" }} >
@@ -31,8 +36,14 @@ const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardP
                 title={title}
                 image={thumbnails?.high?.url}
                 sx={{
-                    width : 280,
-                    height : 155,
+                    width : {
+                        xs : "100%",
+                        md : 280
+                    },
+                    height : {
+                        xs : 190,
+                        sm : 155
+                    },
                     transition : 'transform 0.4s ease',
                     overflow : "hidden",
                     ':hover' : {
