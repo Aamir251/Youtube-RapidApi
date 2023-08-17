@@ -6,7 +6,10 @@ import SearchBar from "./Navbar/SearchBar";
 const Root = () => {
   return (
     <Grid container spacing={3} >
-        <Grid item xs='auto' >
+        <Grid item xs='auto' padding={{
+          xs : "0px !important",
+          md : "24px !important"
+        }} >
           <SideBar />
         </Grid>
         <Grid item xs >

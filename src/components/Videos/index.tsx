@@ -24,7 +24,12 @@ const Videos = ({ videos } : PropType) => {
       {/* because it can send us a channel link too */}
       {
         videos?.map(item => {
-           return  isVideoOrChannel(item?.id?.kind) && <Box key={item.id.videoId || item?.id?.channelId} >
+           return  isVideoOrChannel(item?.id?.kind) && <Box 
+            width={{
+              xs : "100%",
+              sm : "max-content"
+            }} 
+            key={item.id.videoId || item?.id?.channelId} >
             {item?.id?.videoId && <VideoCard videoDetail={item} />}
             {item?.id?.channelId && <ChannelCard channelDetail={item} />}
           </Box>}
@@ -46,11 +51,13 @@ const ChannelCard = ({ channelDetail : { id, snippet } } : ChannelCardProp) => {
   return <Card sx={{ 
         boxShadow : "none", 
         width : {
-        sm : 260,
-        xl : 280
-      }, 
-      background  :"transparent" 
-    }} >
+          xs : "100%",
+          sm : 220,
+          md : 240,
+          xl : 280
+        }, 
+        background  :"transparent" 
+      }} >
     <Link to={`/channel/${id?.channelId}`} style={{ textDecoration : 'none' }} >
       <CardContent >
         <CardMedia 
