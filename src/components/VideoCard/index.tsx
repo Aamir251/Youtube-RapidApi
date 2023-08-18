@@ -42,7 +42,7 @@ const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardP
                     },
                     height : {
                         xs : 190,
-                        sm : 155
+                        sm : 160
                     },
                     transition : 'transform 0.4s ease',
                     overflow : "hidden",

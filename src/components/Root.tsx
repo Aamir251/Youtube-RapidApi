@@ -12,7 +12,12 @@ const Root = () => {
         }} >
           <SideBar />
         </Grid>
-        <Grid item xs >
+        <Grid item xs sx={{
+          paddingTop : {
+            xs : "5px !important",
+            md : "24px !important"
+          }
+        }} >
           <SearchBar />
           <Outlet />
         </Grid>

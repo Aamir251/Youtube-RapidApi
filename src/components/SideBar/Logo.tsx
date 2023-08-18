@@ -11,7 +11,8 @@ const Logo = () => {
             alignItems : "center",
             gap : 10,
             paddingLeft : "1rem",
-            marginBottom : "0.8rem"
+            marginBottom : "0.8rem",
+            width : "max-content"
         }}
         to={"/"}
     >

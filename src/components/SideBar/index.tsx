@@ -3,6 +3,8 @@ import Logo from "./Logo"
 import Categories from "./Categories"
 import { useMemo, useRef, useState } from "react"
 import { useClickedOutside } from "../../hooks/useClickedOutside"
+import ToggleSidebar from "./ToggleSidebar"
+
 
 
 const sx: SxProps<Theme> = {
@@ -18,64 +20,77 @@ const sx: SxProps<Theme> = {
   },
   position : {
     xs : "fixed",
-    md : "static",
+    md : "sticky",
     
   },
-  right : 0,
-  top : '0',
-  overflowY : "scroll",
+  right : "-400px",
+  top : {
+    xs : "0px",
+    md : "20px"
+  },
+  overflowY : {
+    xs : "visible",
+    md : "hidden"
+  },
   transition : {
-    xs : "transform 0.6s ease",
+    xs : "right 0.6s ease",
     md : "none"
   }
 }
 
 const SideBar = () => {
 
-  const [ isOpen, setIsOpen ] = useState<boolean>(true);
+  const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
   let ref = useRef<HTMLElement>(null);
 
   const { isClickedOutside }  = useClickedOutside(ref);
 
   const transformValue : string = useMemo(() => {
-    return isOpen && !isClickedOutside ? "translateX(0px)" : "translateX(100%)";
+    return isOpen && !isClickedOutside ? "0px" : "-400px";
 
   },[isOpen, isClickedOutside])
 
   
-  return (
+  return <>
       <Stack
       component={'aside'}
       direction={'column'}
       height={'100%'}
       ref={ref}
+      className="primary-sidebar"
       sx={{
         ...sx,
-        transform : {
+        right : {
           xs : transformValue,
           md : "translateX(0)"
         }
       }}
       >
-      <Box
-        width='auto'
-        height = "auto"
-        color='text.secondary'
-        paddingY={2}
-        paddingX={2}
-        gap={0.8}
-        borderRadius={3}
-        position='sticky'
-        overflow={"hidden"}
-        className="primary-sidebar"
-        
-      >
-        <Logo />
-        <Categories />
-      </Box>
-    </Stack>
-  )
+        <Box
+          width='auto'
+          height = "auto"
+          color='text.secondary'
+          paddingY={2}
+          paddingX={2}
+          gap={0.8}
+          borderRadius={3}
+          position='relative'
+          
+          
+          
+        >
+          <Logo />
+          <Categories />
+
+          {/* this button is only for mobile */}
+
+          
+        </Box>
+      </Stack>
+    <ToggleSidebar isOpen={isOpen} setIsOpen={setIsOpen}  />
+    </>
 }
 
-export default SideBar
+export default SideBar;
+
