@@ -1,21 +1,20 @@
 import { Box, Stack, SxProps, Theme} from "@mui/material"
 import Logo from "./Logo"
 import Categories from "./Categories"
-import { useMemo, useRef, useState } from "react"
-import { useClickedOutside } from "../../hooks/useClickedOutside"
+import { useRef, useState, MouseEvent } from "react"
 import ToggleSidebar from "./ToggleSidebar"
 
 
 
 const sx: SxProps<Theme> = {
-  backgroundColor : "secondary.main",
+  
   width : {
     xs : "100%",
-    md : "250px"
+    md : 230
   },
-  maxWidth : 280,
   zIndex : 10,
   height : {
+    xs : "100vh",
     md : "92vh"
   },
   position : {
@@ -23,7 +22,7 @@ const sx: SxProps<Theme> = {
     md : "sticky",
     
   },
-  right : "-400px",
+  right : "-100%",
   top : {
     xs : "0px",
     md : "20px"
@@ -38,25 +37,28 @@ const sx: SxProps<Theme> = {
   }
 }
 
+
 const SideBar = () => {
 
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
   let sidebarRef = useRef<HTMLElement>(null);
-  const { isClickedOutside }  = useClickedOutside(sidebarRef);
   
-  const transformValue : string = useMemo(() => {
-    return isOpen && !isClickedOutside ? "0px" : "-400px";
-    
-  },[isOpen, isClickedOutside])
-  
+  const transformValue : string = isOpen  ? "0px" : "-100%";
+  const handleClick = (e : MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if(!target.classList.contains('sidebar-container')) {
+      setIsOpen(false)
+    }
+  }
+
   return <>
       <Stack
       component={'aside'}
       direction={'column'}
-      height={'100%'}
       ref={sidebarRef}
       className="primary-sidebar"
+      onClick={handleClick}
       sx={{
         ...sx,
         right : {
@@ -66,7 +68,7 @@ const SideBar = () => {
       }}
       >
         <Box
-          width='auto'
+          width={'100%'}
           height = "auto"
           color='text.secondary'
           paddingY={2}
@@ -74,8 +76,17 @@ const SideBar = () => {
           gap={0.8}
           borderRadius={3}
           position='relative'
-          
-          
+          maxWidth={{
+            xs : 280,
+            md : '100%'
+          }}
+          marginLeft={'auto'}
+          sx={{
+            backgroundColor  :"#263153",
+            height : "100%",
+            overflowY : "scroll"
+          }}
+          className="sidebar-container"
           
         >
           <Logo />

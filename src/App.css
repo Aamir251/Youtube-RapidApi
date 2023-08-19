@@ -21,7 +21,7 @@
 }
 
 .category-btn:hover {
-  background-color: #142043;
+  background-color: #142043 !important;
 }
 
 .category-btn.is-selected {
@@ -35,24 +35,24 @@
 }
 
 /* width */
-.primary-sidebar::-webkit-scrollbar, .related-videos::-webkit-scrollbar {
+.sidebar-container::-webkit-scrollbar, .related-videos::-webkit-scrollbar {
   display : none !important;
 }
 
 /* Track */
-.primary-sidebar::-webkit-scrollbar-track, .related-videos::-webkit-scrollbar-track {
+.sidebar-container::-webkit-scrollbar-track, .related-videos::-webkit-scrollbar-track {
   background: #f1f1f1;
   display : none !important;
 }
 
 /* Handle */
-.primary-sidebar::-webkit-scrollbar-thumb, .related-videos::-webkit-scrollbar-thumb {
+.sidebar-container::-webkit-scrollbar-thumb, .related-videos::-webkit-scrollbar-thumb {
   background: #888;
   display : none !important;
 }
 
 /* Handle on hover */
-.primary-sidebar::-webkit-scrollbar-thumb:hover, .related-videos::-webkit-scrollbar-thumb:hover {
+.sidebar-container::-webkit-scrollbar-thumb:hover, .related-videos::-webkit-scrollbar-thumb:hover {
   background: #555;
   display : none !important;
 }
