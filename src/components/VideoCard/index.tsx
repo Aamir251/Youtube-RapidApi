@@ -63,7 +63,11 @@ const VideoCard = ({ videoDetail : { id : { videoId }, snippet }, } : VideoCardP
                     py={0.5}
                     width={'max-content'}
                     position={'absolute'}
-                    top={130}
+                    top={{
+                        xs : 165,
+                        sm : 130,
+                        md : 135
+                    }}
                     fontWeight={600}
                     borderRadius={'0 4px 4px 0'}
                 >

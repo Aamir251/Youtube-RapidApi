@@ -1,3 +1,6 @@
 1. Implement Proper Error handling (Currently not fetching related videos)
 2. Implement the Search Functionality
 3. Responsiveness
+4. The mobile sidebar does not work after clicking outside after opening once
+5. Remove Channel Card from Channel Detail Page
+6. Make Channel Page Responsive

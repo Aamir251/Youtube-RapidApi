@@ -1,4 +1,5 @@
-export const convertToSlug = (text : string) => text.toLowerCase().split(" ").join("-")
+export const convertToSlug = (text : string) : string => text.toLowerCase().split(" ").join("-")
+export const slugToWords = (text : string) : string => text.split("-").join(" ")
 
 export const shrinkText = (text : string, wordLimit : number = 9) : string => {
 

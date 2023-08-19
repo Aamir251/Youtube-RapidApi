@@ -17,6 +17,18 @@ const isVideoOrChannel = (kind : string) : boolean => {
 
 
 const Videos = ({ videos } : PropType) => {
+  if(!videos?.length) {
+    return <Box>
+      <Typography variant="h5" >
+        Sorry No Videos Found
+      </Typography>
+      <Link to={"/"} style={{ textDecoration : "none", color : "yellow" }} >
+        <Typography  >
+          Go Back to homepage
+        </Typography>
+      </Link>
+    </Box>
+  }
   
   return (
     <Stack direction={'row'} flexWrap={'wrap'} justifyContent={'start'} gap={3} >

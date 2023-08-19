@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, RefObject } from 'react';
 
 
 type ReturnType = {
     isClickedOutside : boolean
 }
 
-export const useClickedOutside = (ref  : React.RefObject<HTMLElement>) : ReturnType => {
+export const useClickedOutside = (ref  : RefObject<HTMLElement>) : ReturnType => {
 
     const [ isClickedOutside, setIsClickedOutside ] = useState<boolean>(false)
     
@@ -16,10 +16,10 @@ export const useClickedOutside = (ref  : React.RefObject<HTMLElement>) : ReturnT
             // this means the target was clicked inside
             if(ref.current && ref.current.contains(clickedElement)) {
                 setIsClickedOutside(false)
-                return
+            } else {
+                // else user clicked outside our target element
+                setIsClickedOutside(true)
             }
-            // else user clicked outside our target element
-            setIsClickedOutside(true)
         }
 
         document.addEventListener('click', handleClick)

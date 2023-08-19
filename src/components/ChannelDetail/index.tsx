@@ -21,7 +21,6 @@ const ChannelDetail = () => {
   const channelDetails = useMemo(() => data?.items[0] as ChannelType, [data]);
 
 
-  console.log("CHannel ", channelDetails)
   if(loading) {
     return <ChannelDetailLoader />
   }

@@ -42,22 +42,20 @@ const SideBar = () => {
 
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
-  let ref = useRef<HTMLElement>(null);
-
-  const { isClickedOutside }  = useClickedOutside(ref);
-
+  let sidebarRef = useRef<HTMLElement>(null);
+  const { isClickedOutside }  = useClickedOutside(sidebarRef);
+  
   const transformValue : string = useMemo(() => {
     return isOpen && !isClickedOutside ? "0px" : "-400px";
-
+    
   },[isOpen, isClickedOutside])
-
   
   return <>
       <Stack
       component={'aside'}
       direction={'column'}
       height={'100%'}
-      ref={ref}
+      ref={sidebarRef}
       className="primary-sidebar"
       sx={{
         ...sx,
