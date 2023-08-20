@@ -4,7 +4,8 @@ import { VideoCard } from "..";
 import { Link } from "react-router-dom";
 
 type PropType = {
-  videos : VideoType[] | undefined
+  videos : VideoType[] | undefined,
+  shouldRenderChannel? : boolean
 }
 
 // type VideoOrChannelType = "youtube#channel" | "youtube#video"
@@ -16,32 +17,35 @@ const isVideoOrChannel = (kind : string) : boolean => {
 }
 
 
-const Videos = ({ videos } : PropType) => {
+const Videos = ({ videos, shouldRenderChannel = true } : PropType) => {
   if(!videos?.length) {
     return <Box>
       <Typography variant="h5" >
         Sorry No Videos Found
       </Typography>
       <Link to={"/"} style={{ textDecoration : "none", color : "yellow" }} >
-        <Typography  >
+        <Typography>
           Go Back to homepage
         </Typography>
       </Link>
     </Box>
   }
   
+  const itemsToRender = shouldRenderChannel ? videos :  videos?.filter(item => item.id?.kind !== "youtube#channel")
+
   return (
-    <Stack direction={'row'} flexWrap={'wrap'} justifyContent={'start'} gap={3} >
+    <Stack direction={'row'} flexWrap={'wrap'} justifyContent={{ xs : "center", md : 'start' }} gap={3} >
       {/* here the item?.id?.videoId is used to check if it is a video or not */}
       {/* because it can send us a channel link too */}
       {
-        videos?.map(item => {
+        itemsToRender?.map(item => {
            return  isVideoOrChannel(item?.id?.kind) && <Box 
             width={{
               xs : "100%",
-              sm : "max-content"
-            }} 
-            key={item.id.videoId || item?.id?.channelId} >
+              sm : "max-content",
+            }}
+            key={item.id.videoId || item?.id?.channelId} 
+          >
             {item?.id?.videoId && <VideoCard videoDetail={item} />}
             {item?.id?.channelId && <ChannelCard channelDetail={item} />}
           </Box>}

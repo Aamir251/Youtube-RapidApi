@@ -15,21 +15,51 @@ const ChannelNav = ({ thumbnail, title, channelId } : PropType ) => {
     <Card sx={{
         background : 'transparent',
         boxShadow : "none",
-        transform : "translateY(-40px)",
+        marginBottom : 2
     }} >
-        <Stack  pl={10} direction={'row'} alignItems={'flex-end'} columnGap={8} >
+        <Stack mt={2} pl={{
+            xs : 0,
+            md : 10
+        }} direction={{
+            xs : "column",
+            md : 'row'
+        }} alignItems={{
+            xs : "center",
+            md : 'flex-end'
+        }} columnGap={{
+            xs : 4,
+            lg : 8
+        }} >
             <CardMedia
                 image={thumbnail?.default?.url}
                 title={title}
                 sx={{
-                    width : 150,
-                    height : 150,
+                    width : {
+                        xs  : 100,
+                        xl : 150
+                    },
+                    height : {
+                        xs  : 100,
+                        xl : 150
+                    },
+                    position : "relative",
+                    zIndex : 2,
                     objectFit : "contain",
-                    borderRadius : 100
+                    borderRadius : 100,
                 }}
             />
             <Stack direction={'column'} gap={1} pb={3} >
-                <Typography variant="h1" fontSize={36} textAlign={'left'} fontWeight={500} letterSpacing={0.5} >
+                <Typography 
+                    variant="h1" 
+                    fontSize={{
+                        xs : 24,
+                        lg : 36
+                    }}
+                    mt={{ xs : 2, md : 0 }}
+                    textAlign={'left'}
+                    fontWeight={500}
+                    letterSpacing={0.5} 
+                >
                     {title}
                 </Typography>
                 <Links channelId={channelId} />

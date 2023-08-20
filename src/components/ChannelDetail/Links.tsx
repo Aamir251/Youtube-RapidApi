@@ -31,7 +31,7 @@ const Links = ({ channelId } : LinksPropType ) : JSX.Element => {
     ]
 
   
-    return <Stack gap={8} direction={'row'}>
+    return <Stack gap={{ xs : 3, md : 5 }} direction={'row'}>
         {
             linksArr.map(({ title, href }) => <NavLink key={title} title={title} href={href} /> )
         }

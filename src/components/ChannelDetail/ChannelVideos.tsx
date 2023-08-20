@@ -25,7 +25,7 @@ const ChannelVideos = ({ channelId } : PropType) => {
 
     if(data?.items) {
 
-        return <Videos videos={data?.items as VideoType[]} />
+        return <Videos shouldRenderChannel={false} videos={data?.items as VideoType[]} />
     }
 }
 

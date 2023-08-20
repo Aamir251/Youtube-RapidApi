@@ -7,7 +7,7 @@ type BannerPropType = {
 
 const Banner = ({ imageUrl, title } : BannerPropType ) => {
   return (
-    <Card sx={{ mt : 2, borderRadius : 4 }} >
+    <Card sx={{ mt : 2, borderRadius : 4}} >
       <CardMedia
         image={imageUrl}
         title={title}
